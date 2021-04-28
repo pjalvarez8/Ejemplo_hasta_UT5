@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    {% if autor.id %}
+        <h1>Modificar autor</h1>
+    {% else %}
+        <h1>Crear nuevo autor</h1>
+    {% endif %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <a href="{{ path('autor_listado') }}" class="btn btn-info">&lt; Volver al listado</a>
+    {{ form_end(form) }}
+    {% if is_granted('ROLE_BIBLIOTECARIO') %}
+        <h1>¡Es bibliotecario!</h1>
+    {% endif %}
+    {{ dump(app.user) }}
+{% endblock %}
+

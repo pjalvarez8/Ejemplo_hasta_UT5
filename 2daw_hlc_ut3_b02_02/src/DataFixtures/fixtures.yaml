@@ -1,0 +1,32 @@
+App\Entity\Socio:
+    socio{1..20}:
+        nombre: <es_ES:firstName()>
+        apellidos: "<es_ES:lastName()> <es_ES:lastName()>"
+        dni: <es_ES:dni()>
+        docente: false
+        estudiante: false
+        clave: "ninguna"
+
+App\Entity\Autor:
+    autores{1..20}:
+        nombre: <es_ES:firstName()>
+        apellidos: "<es_ES:lastName()> <es_ES:lastName()>"
+        esNacional: <boolean(50)>
+        fechaNacimiento: '<dateTimeBetween("-80 years", "-20 years")>'
+
+App\Entity\Editorial:
+    editorial{1..8}:
+        nombre: <es_ES:company()>
+        cif: <es_ES:vat()>
+        direccionPostal: "<es_ES:streetAddress()>, <es_ES:city()>"
+
+App\Entity\Libro:
+    libros{1..40}:
+        titulo: <es_ES:sentence()>
+        socio: "25%? @socio*"
+        anio_publicacion: <biasedNumberBetween(1950, 2020, 'sqrt')>
+        isbn: <isbn13()>
+        paginas: <numberBetween(100, 900)>
+        sinopsis: "<es_ES:text(400)>"
+        editorial: "@editorial*"
+        autores (unique): '<numberBetween(1, 3)>x @autor*'

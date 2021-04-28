@@ -1,0 +1,29 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Listado de libros</h1>
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>ISBN</th>
+                <th>Editorial</th>
+                <th>Año publicación</th>
+                <th>Páginas</th>
+                <th>Socio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+                <tr>
+                    <td>{{ libro.titulo }}</td>
+                    <td>{{ libro.isbn }}</td>
+                    <td>{{ libro.editorial.nombre }}</td>
+                    <td>{{ libro.anioPublicacion }}</td>
+                    <td>{{ libro.paginas }}</td>
+                    <td>{{ libro.socio | default('---') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

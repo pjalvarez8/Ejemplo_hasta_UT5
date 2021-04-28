@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de autores del libro {{ libro.titulo }}</h1>
+
+    <table border="1px">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Fecha nacimiento</th>
+            <th>¿Nacional?</th>
+            <th>Alias</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for autor in autores %}
+            <tr>
+                <td>{{ autor.nombre }}</td>
+                <td>{{ autor.apellidos }}</td>
+                <td>{{ autor.fechaNacimiento | date('d/m/Y') }}</td>
+                <td>{{ autor.esNacional ? 'Sí' : 'No' }}</td>
+                <td>{{ autor.pseudonimo | default('') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('apartado8') }}">Volver al listado de libros</a>
+{% endblock %}

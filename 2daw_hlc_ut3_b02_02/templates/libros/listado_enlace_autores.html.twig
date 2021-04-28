@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de libros</h1>
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>ISBN</th>
+                <th>Socio</th>
+                <th>Autores</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+                <tr>
+                    <td><a href="{{ path('apartado8_autores', {'id': libro.id}) }}">{{ libro.titulo }}</a></td>
+                    <td>{{ libro.isbn }}</td>
+                    <td>{{ libro.socio | default('---') }}</td>
+                    <td>{{ libro.autores | join(', ') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
